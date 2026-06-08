@@ -4,6 +4,7 @@ import java.time.LocalDateTime;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -22,13 +23,13 @@ import lombok.ToString;
 public class Agendamento extends BaseEntity{
 	
 	@ManyToOne
-	@Column(nullable = true)
+	@JoinColumn(nullable = true)
 	@ToString.Exclude
 	@EqualsAndHashCode.Exclude
 	private Cliente cliente;
 	
 	@ManyToOne
-	@Column(nullable = true)
+	@JoinColumn(nullable = true)
 	@ToString.Exclude
 	@EqualsAndHashCode.Exclude
 	private Procedimento procedimento;
