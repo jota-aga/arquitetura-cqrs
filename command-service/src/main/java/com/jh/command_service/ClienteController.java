@@ -3,6 +3,7 @@ package com.jh.command_service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -31,6 +32,13 @@ public class ClienteController {
 	public ResponseEntity<?> atualizarCliente(@PathVariable Long id, @RequestBody ClienteDTO clienteDTO) {
 		clienteService.atualizarCliente(id, clienteDTO);
 		
-		return ResponseEntity.status(HttpStatus.OK).build();
+		return ResponseEntity.noContent().build();
+	}
+	
+	@DeleteMapping("/{id}")
+	public ResponseEntity<?> excluirCliente(@PathVariable Long id){
+		clienteService.excluirCliente(id);
+		
+		return ResponseEntity.noContent().build();
 	}
 }

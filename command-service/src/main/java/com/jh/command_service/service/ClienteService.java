@@ -28,8 +28,15 @@ public class ClienteService {
 		clienteRepository.save(cliente);
 	}
 	
+	public void excluirCliente(Long id) {
+		Cliente cliente = procurarPorId(id);
+		
+		clienteRepository.delete(cliente);
+	}
+	
 	public Cliente procurarPorId(Long id) {
 		return clienteRepository.findById(id)
 		.orElseThrow(() -> new RuntimeException("Cliente não encontrado pelo id"));
 	}
+	
 }
