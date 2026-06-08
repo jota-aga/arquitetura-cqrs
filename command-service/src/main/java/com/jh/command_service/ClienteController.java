@@ -1,6 +1,10 @@
 package com.jh.command_service;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.PatchMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -17,8 +21,16 @@ public class ClienteController {
 	private ClienteService clienteService;
 	
 	@PostMapping
-	public void createCliente(@RequestBody ClienteDTO clienteDTO) {
+	public ResponseEntity<?> criarCliente(@RequestBody ClienteDTO clienteDTO) {
 		clienteService.criarCliente(clienteDTO);
 		
+		return ResponseEntity.status(HttpStatus.CREATED).build();
+	}
+	
+	@PatchMapping("/{id}")
+	public ResponseEntity<?> atualizarCliente(@PathVariable Long id, @RequestBody ClienteDTO clienteDTO) {
+		clienteService.atualizarCliente(id, clienteDTO);
+		
+		return ResponseEntity.status(HttpStatus.OK).build();
 	}
 }

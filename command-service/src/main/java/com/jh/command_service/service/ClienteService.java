@@ -19,4 +19,17 @@ public class ClienteService {
 		
 		clienteRepository.save(cliente);
 	}
+	
+	public void atualizarCliente(Long id, ClienteDTO dto) {
+		Cliente cliente = procurarPorId(id);
+		
+		ClienteMapper.INSTANCE.atualizarCliente(cliente, dto);
+		
+		clienteRepository.save(cliente);
+	}
+	
+	public Cliente procurarPorId(Long id) {
+		return clienteRepository.findById(id)
+		.orElseThrow(() -> new RuntimeException("Cliente não encontrado pelo id"));
+	}
 }
