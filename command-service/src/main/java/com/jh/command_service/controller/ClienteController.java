@@ -1,4 +1,4 @@
-package com.jh.command_service;
+package com.jh.command_service.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
