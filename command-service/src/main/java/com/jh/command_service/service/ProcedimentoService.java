@@ -20,6 +20,14 @@ public class ProcedimentoService {
 		procedimentoRepository.save(procedimento);
 	}
 	
+	public void atualizarProcedimento(Long id, ProcedimentoDTO dto) {
+		Procedimento procedimento = procurarPorId(id);
+		
+		ProcedimentoMapper.INSTANCE.atualizar(procedimento, dto);
+		
+		procedimentoRepository.save(procedimento);
+	}
+	
 	public void deletarProcedimento(Long id) {
 		Procedimento procedimento = procurarPorId(id);
 		
