@@ -28,7 +28,7 @@ public class ProcedimentoController {
 	}
 	
 	@DeleteMapping("/{id}")
-	public ResponseEntity<?> criarProcedimento(@PathVariable Long id){
+	public ResponseEntity<?> deletarProcedimento(@PathVariable Long id){
 		procedimentoService.deletarProcedimento(id);
 		
 		return ResponseEntity.noContent().build();
