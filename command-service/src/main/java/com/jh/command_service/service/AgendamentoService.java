@@ -19,4 +19,23 @@ public class AgendamentoService {
 		
 		agendamentoRepository.save(agendamento);
 	}
+	
+	public void atualizarAgendamento(AgendamentoDTO dto, Long id) {
+		Agendamento agendamento = procurarPorId(id);
+		
+		AgendamentoMapper.INSTANCE.atualizar(agendamento, dto);
+		
+		agendamentoRepository.save(agendamento);
+	}
+	
+	public void deletarAgendamento(Long id) {
+		Agendamento agendamento = procurarPorId(id);
+		
+		agendamentoRepository.delete(agendamento);
+	}
+	
+	private Agendamento procurarPorId(Long id) {
+		return agendamentoRepository.findById(id)
+				.orElseThrow(() -> new RuntimeException("Agendamento por id não encontrado"));
+	}
 }
