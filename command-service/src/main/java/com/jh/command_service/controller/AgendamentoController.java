@@ -10,7 +10,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.jh.command_service.dto.AgendamentoDTO;
+import com.jh.command_service.dto.AgendamentoCreateDTO;
+import com.jh.command_service.dto.AgendamentoUpdateDTO;
 import com.jh.command_service.service.AgendamentoService;
 
 @RequestMapping("/agendamento")
@@ -21,15 +22,22 @@ public class AgendamentoController {
 	private AgendamentoService agendamentoService;
 	
 	@PostMapping
-	public ResponseEntity<?> criarAgendamento(@RequestBody AgendamentoDTO dto){
+	public ResponseEntity<?> criarAgendamento(@RequestBody AgendamentoCreateDTO dto){
 		agendamentoService.criarAgendamento(dto);
 		
 		return ResponseEntity.noContent().build();
 	}
 	
 	@PatchMapping("/{id}")
-	public ResponseEntity<?> atualizarAgendamento(@PathVariable Long id, @RequestBody AgendamentoDTO dto){
+	public ResponseEntity<?> atualizarAgendamento(@PathVariable Long id, @RequestBody AgendamentoCreateDTO dto){
 		agendamentoService.atualizarAgendamento(dto, id);
+		
+		return ResponseEntity.noContent().build();
+	}
+	
+	@PatchMapping("/agendar/{id}")
+	public ResponseEntity<?> ocuparAgendamento(@PathVariable Long id, @RequestBody AgendamentoUpdateDTO dto){
+		agendamentoService.ocuparAgendamento(dto, id);
 		
 		return ResponseEntity.noContent().build();
 	}
