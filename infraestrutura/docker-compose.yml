@@ -18,7 +18,20 @@ services:
 
     networks:
       - beautique-network
-
+  rabbitmq:
+      image: 'rabbitmq:3-management'
+      hostname: rabbitmq
+      environment:
+        RABBITMQ_DEFAULT_USER: user
+        RABBITMQ_DEFAULT_PASS: password
+      ports:
+        - '5672:5672'
+        - '15672:15672'
+      networks:
+        - beautique-network
+      volumes:
+        - 'C:/rabbitm1-data:/var/lib/rabbitmq'
+        - 'C:/rabbitm1-log:/var/log/rabbitmq'
 networks:
   beautique-network:
     driver: bridge
